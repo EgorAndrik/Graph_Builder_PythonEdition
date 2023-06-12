@@ -19,6 +19,11 @@ class MainWindow(QMainWindow):
         self.container = QWidget()
         self.layout = QGridLayout()
 
+        self.creatWidgets()
+
+        self.conectWidgets()
+
+    def creatWidgets(self):
         pixmap = QPixmap("Images/Graph_StartError.png")
         self.graph = QLabel()
         self.graph.setPixmap(pixmap)
@@ -39,8 +44,6 @@ class MainWindow(QMainWindow):
         self.button.setCheckable(True)
         self.button.setStyleSheet("text-align:center; font-size: 20px")
         self.button.clicked.connect(self._buildGraph)
-
-        self.conectWidgets()
 
     def conectWidgets(self):
         self.layout.addWidget(self.graph, 0, 0, alignment=Qt.AlignmentFlag.AlignCenter)

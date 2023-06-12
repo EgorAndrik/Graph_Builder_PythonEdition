@@ -4,7 +4,7 @@ from sympy import *
 
 
 class GraphBuilder:
-    def _handler(self, arifmEx):
+    def _handler(self, arifmEx: str) -> str:
         arifmEx = arifmEx.replace(' ', '')
         if '^' in arifmEx:
             arifmEx = arifmEx.replace('^', '**')
@@ -12,11 +12,11 @@ class GraphBuilder:
             arifmEx = "1*" + arifmEx
         return arifmEx
 
-    def _check(self, arifmEx):
+    def _check(self, arifmEx: str) -> bool:
         varsFunc = ['sin', 'cos', 'sqrt']
         return any([i in arifmEx for i in varsFunc])
 
-    def buildG(self, arithmetic_example):
+    def buildG(self, arithmetic_example: str):
         function = arithmetic_example
         function = self._handler(function)
         fig, ax = plt.subplots()
