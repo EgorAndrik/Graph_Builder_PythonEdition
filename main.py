@@ -5,7 +5,6 @@ from PyQt6.QtWidgets import \
     QApplication, QWidget, QPushButton, \
     QLineEdit, QLabel, QMainWindow, QGridLayout
 from GraphBuild import GraphBuilder
-from sympy import *
 from StringValidation import CheckFunctions
 
 

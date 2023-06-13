@@ -26,34 +26,35 @@ class GraphBuilder:
         ax.set_ylabel('y')
         plt.grid(True)
         if not self._check(function):
-            n = []
+            roots = []
 
             if '/' in function:
                 arifmEx = function.split('/')
                 x = symbols('x', real=True)
-                n = solve(Eq(eval(arifmEx[0]), 0), x) + solve(Eq(eval(arifmEx[1]), 0), x)
+                roots = solve(Eq(eval(arifmEx[0]), 0), x) + solve(Eq(eval(arifmEx[1]), 0), x)
 
             if '/' not in function:
                 x = symbols('x', real=True)
-                n = solve(Eq(eval(function), 0), x)
+                roots = solve(Eq(eval(function), 0), x)
 
-                if len(n) == 0 and 'x**2' in function and 'x' in function[function.find('x**') + 1:]:
+                if len(roots) == 0 and 'x**2' in function and 'x' in function[function.find('x**') + 1:]:
                     terms = list(map(lambda x: x.replace('**2', '').replace('*', ''), function.split('x')))
                     a = float(terms[0])
                     b = float(terms[1])
-                    n.append(-b / (2 * a))
+                    roots.append(-b / (2 * a))
 
-            if len(n) == 0:
-                n = [0]
+            if len(roots) == 0:
+                roots = [0]
 
-            elif len(n) > 0 and \
+            elif len(roots) > 0 and \
                     any(([
-                        str(type(i)) in ["<class 'sympy.core.numbers.NegativeOne'>", "<class 'sympy.core.add.Add'>"]
-                        for i in n])):
-                n = [0]
+                        str(type(i)) in ["<class 'sympy.core.numbers.NegativeOne'>", "<class 'sympy.core.add.Add'>",
+                                         "<class 'sympy.core.power.Pow'>", "<class 'sympy.core.mul.Mul'>"]
+                        for i in roots])):
+                roots = [0]
 
-            X_min = float(min(n) - 4.0)
-            X_max = float(max(n) + 4.0)
+            X_min = float(min(roots) - 4.0)
+            X_max = float(max(roots) + 4.0)
 
             x = np.linspace(X_min, X_max, 100)
             y = eval(function)

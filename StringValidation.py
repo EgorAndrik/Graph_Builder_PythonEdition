@@ -16,7 +16,7 @@ class CheckFunctions:
     def brackets(self) -> bool:
         if '(' in self._arithmetic_example or ')' in self._arithmetic_example:
             arithmetic = self._arithmetic_example
-            for i in '1234567890/*-+x abscossin':
+            for i in '1234567890./*-+x abscossinsqrt':
                 arithmetic = arithmetic.replace(i, '')
             bracket = 0
             for i in arithmetic:
@@ -27,7 +27,7 @@ class CheckFunctions:
         return True
 
     def availableSymbols(self) -> bool:
-        alpha = '1234567890x+-*/() '
+        alpha = '1234567890.x+-*/() '
         arithmetic_example = self._arithmetic_example
         for el in alpha:
             arithmetic_example = arithmetic_example.replace(el, '')
