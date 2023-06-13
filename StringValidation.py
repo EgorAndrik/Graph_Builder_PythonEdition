@@ -16,7 +16,9 @@ class CheckFunctions:
     def brackets(self) -> bool:
         if '(' in self._arithmetic_example or ')' in self._arithmetic_example:
             arithmetic = self._arithmetic_example
-            for i in '1234567890./*-+x abscossinsqrt':
+            for i in '1234567890./*-+x ':
+                arithmetic = arithmetic.replace(i, '')
+            for i in ['cos', 'sin', 'abs', 'sqrt']:
                 arithmetic = arithmetic.replace(i, '')
             bracket = 0
             for i in arithmetic:

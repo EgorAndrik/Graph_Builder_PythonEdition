@@ -22,8 +22,8 @@ class GraphBuilder:
         function = self._handler(function)
         fig, ax = plt.subplots()
         ax.set_title('Graph function')
-        ax.set_xlabel('x')
-        ax.set_ylabel('y')
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
         plt.grid(True)
         if not self._check(function):
             roots = []
@@ -49,12 +49,16 @@ class GraphBuilder:
             elif len(roots) > 0 and \
                     any(([
                         str(type(i)) in ["<class 'sympy.core.numbers.NegativeOne'>", "<class 'sympy.core.add.Add'>",
-                                         "<class 'sympy.core.power.Pow'>", "<class 'sympy.core.mul.Mul'>"]
+                                         "<class 'sympy.core.power.Pow'>", "<class 'sympy.core.mul.Mul'>",
+                                         "<class 'sympy.core.numbers.Rational'>"]
                         for i in roots])):
                 roots = [0]
 
             X_min = float(min(roots) - 4.0)
             X_max = float(max(roots) + 4.0)
+
+            print(roots)
+            print([type(i) for i in roots])
 
             x = np.linspace(X_min, X_max, 100)
             y = eval(function)
