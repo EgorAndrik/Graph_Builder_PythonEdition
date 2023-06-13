@@ -6,6 +6,7 @@ from sympy import *
 class GraphBuilder:
     def _handler(self, arifmEx: str) -> str:
         arifmEx = arifmEx.replace(' ', '')
+        arifmEx = arifmEx.lower()
         if '^' in arifmEx:
             arifmEx = arifmEx.replace('^', '**')
         if len(arifmEx[:arifmEx.find('x**')]) == 0:
