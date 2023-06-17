@@ -18,7 +18,7 @@ class CheckFunctions:
             arithmetic = self._arithmetic_example
             for i in '1234567890./*-+x ':
                 arithmetic = arithmetic.replace(i, '')
-            for i in ['cos', 'sin', 'abs', 'sqrt']:
+            for i in ['cos', 'sin', 'abs', 'sqrt', 'tan', 'ctg']:
                 arithmetic = arithmetic.replace(i, '')
             bracket = 0
             for i in arithmetic:
@@ -33,8 +33,8 @@ class CheckFunctions:
         arithmetic_example = self._arithmetic_example
         for el in alpha:
             arithmetic_example = arithmetic_example.replace(el, '')
+        for el in ['cos', 'sin', 'abs', 'sqrt', 'tan', 'ctg']:
+            arithmetic_example = arithmetic_example.replace(el, '')
         if len(arithmetic_example) > 0:
-            if any([i in arithmetic_example for i in ['cos', 'sin', 'abs', 'sqrt']]):
-                return True
             return False
         return True
