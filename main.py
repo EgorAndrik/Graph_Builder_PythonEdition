@@ -8,6 +8,15 @@ from GraphBuild import GraphBuilder
 from StringValidation import CheckFunctions
 
 
+#    __         __        _____        __________   __     _
+#   |  \       /  |      / / \ \      |___    ___| |  \   | |
+#   |   \     /   |     / /   \ \         |  |     |   \  | |
+#   | |\ \   / /| |    / /_____\ \        |  |     | |\ \ | |
+#   | | \ \_/ / | |   /  _______  \       |  |     | | \ \| |
+#   | |  \___/  | |  / /         \ \   ___|  |___  | |  \ | |
+#   |_|         |_| /_/           \_\ |__________| |_|   \__|
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
