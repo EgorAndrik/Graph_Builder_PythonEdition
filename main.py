@@ -22,7 +22,9 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.creatWindow()
+
         self.creatWidgets()
+
         self.conectWidgets()
 
     def creatWindow(self):
@@ -68,9 +70,12 @@ class MainWindow(QMainWindow):
     def _buildGraph(self):
         arithmetic_example = self.textFaild.text().lower()
         checkFunction = CheckFunctions(arithmetic_example)
-        if len(arithmetic_example) > 0 and checkFunction.brackets()\
-                and checkFunction.availableSymbols() and checkFunction.placementOfSigns():
-            GraphBuilder().buildG(arithmetic_example)
+        if len(arithmetic_example) > 0 \
+                and checkFunction.brackets() \
+                and checkFunction.availableSymbols() \
+                and checkFunction.placementOfSigns():
+            graphBuild = GraphBuilder(arithmetic_example)
+            graphBuild.buildG()
             pixmap = QPixmap("Images/Graph.png")
             self.graph.setPixmap(pixmap)
         else:

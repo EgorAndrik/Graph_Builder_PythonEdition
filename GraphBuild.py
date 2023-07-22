@@ -15,28 +15,31 @@ from math import *
 
 
 class GraphBuilder:
-    def _handler(self, arifmEx: str) -> str:
-        arifmEx = arifmEx.replace(' ', '')
-        arifmEx = arifmEx.lower()
+    def __init__(self, arifmEx: str):
+        self.arifmEx = arifmEx
+
+    def _handler(self) -> str:
+        arifmEx = self.arifmEx.replace(' ', '').lower()
         if '^' in arifmEx:
             arifmEx = arifmEx.replace('^', '**')
         if len(arifmEx[:arifmEx.find('x**')]) == 0:
             arifmEx = "1*" + arifmEx
         return arifmEx
 
-    def _check(self, arifmEx: str) -> bool:
+    def _check(self) -> bool:
         varsFunc = ['cos', 'sin', 'abs', 'sqrt', 'tan', 'ctg']
-        return any([i in arifmEx for i in varsFunc])
+        return any([i in self.arifmEx for i in varsFunc])
 
-    def buildG(self, arithmetic_example: str):
-        function = arithmetic_example
-        function = self._handler(function)
+    def buildG(self):
+        function = self._handler()
         fig, ax = plt.subplots()
+
         ax.set_title('Graph function')
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         plt.grid(True)
-        if not self._check(function):
+
+        if not self._check():
             roots = []
 
             if '/' in function:
